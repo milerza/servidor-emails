@@ -24,14 +24,15 @@ class CaixaEmail{
         CaixaEmail() {tamanho = 0;};
         int GetTamanho() {return tamanho;};
         bool Vazia() {return tamanho == 0;};
-        void Enfileira(Email item);
         Email Desenfileira();
         void Limpa();
-
+        void InserePrioritario(Email item);
+        
     protected:
         int tamanho;
 
     private:
+        TipoCelula* Posiciona(int pos, bool antes);
         TipoCelula* frente;
         TipoCelula* tras;
 };
