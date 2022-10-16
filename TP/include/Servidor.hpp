@@ -6,9 +6,14 @@
 class Usuario{
     public:
         int ID;
-        CaixaEmail caixa;
-        Usuario();
+        CaixaEmail * caixa;
+        
+        Usuario(int id);
+        ~Usuario();
         int GetId(){return ID;};
+
+        
+        
 };
 
 class No{
@@ -28,19 +33,16 @@ class Servidor{
         Servidor();
         ~Servidor();
         void CadastrarUsuario(Usuario * item);
-        void RemoverUsuario(Usuario * item);
+        void RemoverUsuario(int id);
         void EntregarEmail(Email email);
-        void ConsultarEmail(int idUsuario);//caminha  acha o user e retira o ultimo da caixa de email do usuario
-        //void Caminha(int tipo);
+        void ConsultarEmail(int idUsuario);
         void Limpa();
 
     private:
-        void InsereRecursivo(No* &p, Usuario item);
+        void InsereRecursivo(No* &p, Usuario * item);
+        No * BuscarUsuario(No* &p, int id);
+        No * Remover(No* &raiz, int id);
         void ApagaRecursivo(No* p);
-        void PorNivel();
-        void PreOrdem(No* p);
-        void InOrdem(No* p);
-        void PosOrdem(No* p);
 
         No *raiz;
 };
