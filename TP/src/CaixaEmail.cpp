@@ -45,7 +45,7 @@ void CaixaEmail::Limpa(){
 
 void CaixaEmail::InserePrioritario(Email item) {
     TipoCelula *p, *nova;
-    p = Posiciona(item.prioridade, false); // posiciona na célula anterior
+    p = Posiciona(item.prioridade); // posiciona na célula anterior
     nova = new TipoCelula();
     nova->item = item;
     nova->prox = p->prox;
@@ -58,7 +58,7 @@ void CaixaEmail::InserePrioritario(Email item) {
         tras = nova;
 };
 
-TipoCelula* CaixaEmail::Posiciona(int prioridade, bool antes=false){
+TipoCelula* CaixaEmail::Posiciona(int prioridade){
    
     TipoCelula *p; 
     p = frente;
@@ -70,8 +70,7 @@ TipoCelula* CaixaEmail::Posiciona(int prioridade, bool antes=false){
         
     }
     // vai para a próxima
-    // se antes for false
-    if(!antes && tamanho > 0)
+    if(tamanho > 0)
         p = p->prox;
 
     return p;

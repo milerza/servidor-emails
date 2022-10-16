@@ -32,7 +32,7 @@ class CaixaEmail{
         int tamanho;
 
     private:
-        TipoCelula* Posiciona(int prioridade, bool antes);
+        TipoCelula* Posiciona(int prioridade);
         TipoCelula* frente;
         TipoCelula* tras;
 };
