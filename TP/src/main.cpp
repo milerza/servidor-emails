@@ -1,4 +1,5 @@
 #include "CaixaEmail.hpp"
+#include "Servidor.hpp"
 
 int main(){
    /*  Email * email_teste1 = new Email();

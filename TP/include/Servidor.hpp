@@ -4,18 +4,17 @@
 #include "CaixaEmail.hpp"
 
 class Usuario{
-    private:
-        int ID;
     public:
+        int ID;
         CaixaEmail caixa;
-        Usuario(int id){this->ID = id;};
+        Usuario();
         int GetId(){return ID;};
 };
 
 class No{
     public:
         No();
-        Usuario item;
+        Usuario * item;
 
     private:
         No *esq;
@@ -28,11 +27,11 @@ class Servidor{
     public:
         Servidor();
         ~Servidor();
-        void CadastrarUsuario(Usuario item);
-        void RemoverUsuario(Usuario item);
+        void CadastrarUsuario(Usuario * item);
+        void RemoverUsuario(Usuario * item);
         void EntregarEmail(Email email);
         void ConsultarEmail(int idUsuario);//caminha  acha o user e retira o ultimo da caixa de email do usuario
-        void Caminha(int tipo);
+        //void Caminha(int tipo);
         void Limpa();
 
     private:
