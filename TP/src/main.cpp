@@ -1,7 +1,7 @@
 #include "CaixaEmail.hpp"
 
 int main(){
-    Email * email_teste1 = new Email();
+   /*  Email * email_teste1 = new Email();
     email_teste1->mensagem = "Oi 1 FIM";
     email_teste1->prioridade = 1;
 
@@ -24,7 +24,7 @@ int main(){
     caixa.InserePrioritario(*email_teste1);
     caixa.InserePrioritario(*email_teste2);
     caixa.InserePrioritario(*email_teste3);
-    caixa.InserePrioritario(*email_teste4);
+    caixa.InserePrioritario(*email_teste4); */
 
     return 0;
 }
