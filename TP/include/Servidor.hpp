@@ -7,7 +7,6 @@ class Usuario{
     public:
         int ID;
         CaixaEmail * caixa;
-        
         Usuario(int id);
         ~Usuario();
         int GetId(){return ID;};
