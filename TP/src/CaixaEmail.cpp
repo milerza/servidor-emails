@@ -3,6 +3,12 @@
 
 using namespace std;
 
+CaixaEmail::CaixaEmail() {
+    tamanho = 0;
+    frente = new TipoCelula();
+    tras = frente;
+}
+
 TipoCelula::TipoCelula(){
     prox = nullptr;// tenho que dazer algo em relacao ao contrutpr da caixa de email
 }
@@ -39,12 +45,14 @@ void CaixaEmail::Limpa(){
 
 void CaixaEmail::InserePrioritario(Email item) {
     TipoCelula *p, *nova;
-    p = Posiciona(item.prioridade,true); // posiciona na célula anterior
+    p = Posiciona(item.prioridade, false); // posiciona na célula anterior
     nova = new TipoCelula();
     nova->item = item;
     nova->prox = p->prox;
     p->prox = nova;
     tamanho++;
+
+    std::cout << item.mensagem <<std::endl;
     
     if(nova->prox == NULL)
         tras = nova;
@@ -56,14 +64,14 @@ TipoCelula* CaixaEmail::Posiciona(int prioridade, bool antes=false){
     p = frente;
 
     for(int i = 1; i<tamanho; i++){
-        if(prioridade > p->item.prioridade){
-            break;
-        }
+        if(prioridade > p->prox->item.prioridade)
+            return p;
         p = p->prox;
+        
     }
     // vai para a próxima
     // se antes for false
-    if(!antes)
+    if(!antes && tamanho > 0)
         p = p->prox;
 
     return p;

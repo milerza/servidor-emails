@@ -21,7 +21,7 @@ class TipoCelula{
 
 class CaixaEmail{
     public:
-        CaixaEmail() {tamanho = 0;};
+        CaixaEmail();
         int GetTamanho() {return tamanho;};
         bool Vazia() {return tamanho == 0;};
         Email Desenfileira();
@@ -32,7 +32,7 @@ class CaixaEmail{
         int tamanho;
 
     private:
-        TipoCelula* Posiciona(int pos, bool antes);
+        TipoCelula* Posiciona(int prioridade, bool antes);
         TipoCelula* frente;
         TipoCelula* tras;
 };
