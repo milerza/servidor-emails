@@ -9,6 +9,11 @@ CaixaEmail::CaixaEmail() {
     tras = frente;
 }
 
+CaixaEmail::~CaixaEmail(){
+    Limpa();
+    delete frente;
+}
+
 TipoCelula::TipoCelula(){
     prox = nullptr;// tenho que dazer algo em relacao ao contrutpr da caixa de email
 }
