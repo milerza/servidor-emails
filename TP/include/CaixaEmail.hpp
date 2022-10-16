@@ -22,6 +22,7 @@ class TipoCelula{
 class CaixaEmail{
     public:
         CaixaEmail();
+        ~CaixaEmail();
         int GetTamanho() {return tamanho;};
         bool Vazia() {return tamanho == 0;};
         Email Desenfileira();
