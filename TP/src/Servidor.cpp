@@ -9,6 +9,7 @@ Usuario::Usuario(int id){
 Usuario::~Usuario(){
     delete caixa;
 }
+
 No::No(){
     this->esq = nullptr;
     this->dir = nullptr;

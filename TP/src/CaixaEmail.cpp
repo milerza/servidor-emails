@@ -15,7 +15,7 @@ CaixaEmail::~CaixaEmail(){
 }
 
 TipoCelula::TipoCelula(){
-    prox = nullptr;// tenho que dazer algo em relacao ao contrutpr da caixa de email
+    prox = nullptr;
 }
 
 Email CaixaEmail::Desenfileira(){
