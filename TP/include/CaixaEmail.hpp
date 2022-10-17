@@ -3,6 +3,10 @@
 
 #include <string>
 
+extern "C" {
+    #include "msgassert.h" 
+}
+
 class Email{
     public:
         int ContaID;
