@@ -90,12 +90,13 @@ No * Servidor::Remover(No* &p, int id) {
                 // remover nós que possuem 2 filhos
                 if(p->esq != nullptr && p->dir != nullptr){
                     No *aux = p->esq;
+                    Usuario *atual = p->item;
 
                     while(aux->dir != nullptr)
                         aux = aux->dir;
 
                     p->item = aux->item;
-                    aux->item->ID  = id;
+                    aux->item = atual;
                     std::cout << "Elemento trocado: " << id << std::endl;
                     p->esq = Remover(p->esq, id);
                     return p;
