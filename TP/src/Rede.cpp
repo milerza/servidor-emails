@@ -54,4 +54,6 @@ void Rede::ReceberMensagens(std::string nome_arquivo){
             servidor->ConsultarEmail(id);
         }
     }
+
+    file.close();
 }
