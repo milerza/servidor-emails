@@ -14,7 +14,7 @@ Rede::~Rede(){
 
 void Rede::ReceberMensagens(std::string nome_arquivo){
     std::ifstream file;
-    std::string requisicao,linha, msg, buffer;
+    std::string requisicao, linha;
     int id, pri;
 
     // abrir o arquivo de entrada
@@ -31,20 +31,25 @@ void Rede::ReceberMensagens(std::string nome_arquivo){
         if(requisicao == "CADASTRA"){
             iss >> id;
             servidor->CadastrarUsuario(id);
-        } else if(requisicao == "REMOVE"){
+        } 
+        else if(requisicao == "REMOVE"){
             iss >> id;
             servidor->RemoverUsuario(id);
-        } else if(requisicao == "ENTREGA"){
+        } 
+        else if(requisicao == "ENTREGA"){
+            std::string msg, buffer;
+
             iss >> id >> pri >> buffer;
+
             while (buffer != "FIM")
             {   
                 msg.append(buffer);
                 msg.push_back(' ');
                 iss >> buffer;
             }
-            msg.push_back('.');
-            
-        } else if(requisicao == "CONSULTA"){
+            servidor->EntregarEmail(id, pri, msg);
+        } 
+        else if(requisicao == "CONSULTA"){
             iss >> id;
             servidor->ConsultarEmail(id);
         }

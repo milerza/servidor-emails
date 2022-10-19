@@ -33,6 +33,9 @@ Email CaixaEmail::Desenfileira(){
         throw "Fila vazia";
 
     aux = frente->prox->item;
+
+    std::cout <<"CONSULTA " << aux.ContaID <<": " << aux.mensagem << std::endl;
+    
     p = frente;
     frente = frente->prox;
 
@@ -68,7 +71,7 @@ void CaixaEmail::InserePrioritario(Email item) {
     if(nova->prox == NULL)
         tras = nova;
 
-    std::cout << "OK: MENSAGEM PARA  "<< item.ContaID <<" ENTREGUE"<< std::endl;
+    std::cout << "OK: MENSAGEM PARA "<< item.ContaID <<" ENTREGUE"<< std::endl;
 };
 
 TipoCelula* CaixaEmail::Posiciona(int prioridade){
