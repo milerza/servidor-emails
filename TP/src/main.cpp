@@ -1,23 +1,30 @@
 
-#include "Servidor.hpp"
+#include "Rede.hpp"
 
 #include <sstream>
 #include <string>
 #include <fstream>
+#include <iostream>
 
 int main(int argc, char const *argv[]){
     
-    std::ifstream infile("thefile.txt");
-    std::string line;
-    while (std::getline(infile, line))
-    {
-        std::istringstream iss(line);
-        int a, b;
-        if (!(iss >> a >> b)) { break; } // error
+    Rede * rede = new Rede();
+    std::string arquivo_entrada = "input2.txt";
+    std::string arquivo_saida;
 
-        // process pair (a,b)
+    // check arguments
+    for (int i = 0; i < argc; i++)
+    {
+        if (std::string(argv[i]) == "-i") //ler o arquivo
+        {
+            arquivo_entrada = std::string(argv[i+1]);
+        }
     }
 
+    rede->ReceberMensagens(arquivo_entrada);
+
+    // asserts de arquivos de entrada
+    erroAssert(arquivo_entrada != "", "Erro no input!");
 
     return 0;
 }

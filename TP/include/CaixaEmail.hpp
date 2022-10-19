@@ -9,6 +9,8 @@ extern "C" {
 
 class Email{
     public:
+        Email();
+        Email(int id, int pri, std::string msg);
         int ContaID;
         int prioridade;
         std::string mensagem;

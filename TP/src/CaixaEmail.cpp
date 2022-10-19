@@ -3,6 +3,14 @@
 
 using namespace std;
 
+Email::Email(){}
+
+Email::Email(int id, int pri, std::string msg){
+    this->ContaID = id;
+    this->prioridade = pri;
+    this->mensagem = msg;
+}
+
 CaixaEmail::CaixaEmail() {
     tamanho = 0;
     frente = new TipoCelula();
@@ -22,7 +30,7 @@ Email CaixaEmail::Desenfileira(){
     TipoCelula *p;
     Email aux;
     if (tamanho == 0)
-        throw "Fila está vazia!";
+        throw "Fila vazia";
 
     aux = frente->prox->item;
     p = frente;
@@ -56,11 +64,11 @@ void CaixaEmail::InserePrioritario(Email item) {
     nova->prox = p->prox;
     p->prox = nova;
     tamanho++;
-
-    std::cout << item.mensagem <<std::endl;
     
     if(nova->prox == NULL)
         tras = nova;
+
+    std::cout << "OK: MENSAGEM PARA  "<< item.ContaID <<" ENTREGUE"<< std::endl;
 };
 
 TipoCelula* CaixaEmail::Posiciona(int prioridade){

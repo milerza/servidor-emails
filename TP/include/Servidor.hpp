@@ -9,10 +9,7 @@ class Usuario{
         CaixaEmail * caixa;
         Usuario(int id);
         ~Usuario();
-        int GetId(){return ID;};
-
-        
-        
+        int GetId(){return ID;};       
 };
 
 class No{
@@ -31,9 +28,9 @@ class Servidor{
     public:
         Servidor();
         ~Servidor();
-        void CadastrarUsuario(Usuario * item);
+        void CadastrarUsuario(int id);
         void RemoverUsuario(int id);
-        void EntregarEmail(Email email);
+        void EntregarEmail(int id, int pri, std::string msg);
         void ConsultarEmail(int idUsuario);
         void Limpa();
 

@@ -23,7 +23,8 @@ Servidor::~Servidor(){
     Limpa();
 }
 
-void Servidor::CadastrarUsuario(Usuario * item){
+void Servidor::CadastrarUsuario(int id){
+    Usuario * item = new Usuario(id);
     InsereRecursivo(raiz,item);
 }
 
@@ -31,22 +32,36 @@ void Servidor::RemoverUsuario(int id){
     Remover(raiz, id);
 }
 
-void Servidor::EntregarEmail(Email email){
+void Servidor::EntregarEmail(int id, int pri, std::string msg){
+    Email email = Email(id,pri,msg);
+    
     No * usuario;
-    usuario = this->BuscarUsuario(raiz, email.ContaID);
-    usuario->item->caixa->InserePrioritario(email);
+    try{
+        usuario = this->BuscarUsuario(raiz, email.ContaID);
+        usuario->item->caixa->InserePrioritario(email);
+    } catch(int id){
+        std::cout << "ERRO: CONTA "<< id << " NAO EXISTE" << std::endl;
+    }
 }
 
 void Servidor::ConsultarEmail(int idUsuario){
     No * usuario;
-    usuario = this->BuscarUsuario(raiz, idUsuario);
-    usuario->item->caixa->Desenfileira();
+    try{
+        usuario = this->BuscarUsuario(raiz, idUsuario);
+        usuario->item->caixa->Desenfileira();
+    } catch(int id){
+        std::cout << "ERRO: CONTA ID "<< id << " NAO EXISTE" << std::endl;
+    } catch(char const* erro){
+        std::cout << "CONSULTA ID: "<< idUsuario << " CAIXA DE ENTRADA VAZIA" << std::endl;
+    }
+    
 }
 
 void Servidor::InsereRecursivo(No* &p, Usuario * item){
     if(p == nullptr){
         p = new No();
         p->item = item;
+        std::cout << "OK: CONTA "<< p->item->ID << " CADASTRADA" << std::endl;
     }
     else{
         if(item->ID < p->item->ID)
@@ -54,14 +69,14 @@ void Servidor::InsereRecursivo(No* &p, Usuario * item){
         else if(item->ID > p->item->ID){
             InsereRecursivo(p->dir, item);
         } else{
-            throw "Já existe essse ID";
+            std::cout << "ERRO: CONTA "<< p->item->ID << " JA EXISTENTE" << std::endl;
         }
     }
 }
 
 No * Servidor::BuscarUsuario(No* &p, int id){
     if(p == nullptr){
-        throw "ex";
+        throw id;
     }
     if(p->item->ID == id){
         return p;
@@ -76,14 +91,14 @@ No * Servidor::BuscarUsuario(No* &p, int id){
 
 No * Servidor::Remover(No* &p, int id) {
     if(p == nullptr){
-        std::cout << "Valor nao encontrado!"<< std::endl;
+        std::cout << "ERRO: CONTA "<< id << " NAO EXISTE" << std::endl;
         return nullptr;
     } else { // procura o nó a remover
         if(p->item->ID == id) {
             // remove nós folhas (nós sem filhos)
             if(p->esq == nullptr && p->dir == nullptr) {
                 delete p;
-                std::cout << "Elemento folha removido: "<< id <<std::endl;
+                std::cout << "OK: CONTA "<< id <<" REMOVIDA"<<std::endl;
                 return nullptr;
             }
             else{
@@ -97,7 +112,6 @@ No * Servidor::Remover(No* &p, int id) {
 
                     p->item = aux->item;
                     aux->item = atual;
-                    std::cout << "Elemento trocado: " << id << std::endl;
                     p->esq = Remover(p->esq, id);
                     return p;
                 }
@@ -109,7 +123,7 @@ No * Servidor::Remover(No* &p, int id) {
                     else
                         aux = p->dir;
                     delete p;
-                    std::cout << "Elemento com 1 filho removido: "<< id << std::endl;
+                    std::cout << "OK: CONTA "<< id <<" REMOVIDA" <<std::endl;
                     return aux;
                 }
             }
